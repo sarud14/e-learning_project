@@ -1,0 +1,123 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  USER_INSTRUCTOR
+  ADMIN
+}
+
+enum Payment_Status {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum Enrollment_Status {
+  ACTIVE
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+enum Course_Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+model Account {
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  password    String
+  first_name  String
+  last_name   String
+  role        UserRole     @default(USER)
+  createAt    DateTime     @default(now())
+  updateAt    DateTime     @updatedAt @db.Timestamp(0)
+  login_logs  Login_log[]
+  search_logs Search_log[]
+  payments    Payment[]
+  enrollments Enrollment[]
+}
+
+model Login_log {
+  id              Int      @id @default(autoincrement())
+  login_timestamp DateTime @default(now())
+  Account         Account? @relation(fields: [accountId], references: [id])
+  accountId       Int?
+}
+
+model Search_log {
+  id               Int      @id @default(autoincrement())
+  search_timestamp DateTime @default(now())
+  Account          Account? @relation(fields: [accountId], references: [id])
+  accountId        Int?
+}
+
+model Payment {
+  id           Int            @id @default(autoincrement())
+  payment_date DateTime       @default(now())
+  status       Payment_Status @default(PENDING)
+  amount       Int
+  Account      Account?       @relation(fields: [accountId], references: [id])
+  accountId    Int?
+  enrollment   Enrollment     @relation(name: "EnrollmentPayment", fields: [enrollmentId], references: [id])
+  enrollmentId Int            @unique
+}
+
+model Enrollment {
+  id              Int               @id @default(autoincrement())
+  enrollment_date DateTime          @default(now())
+  status          Enrollment_Status @default(ACTIVE)
+  Account         Account?          @relation(fields: [accountId], references: [id])
+  accountId       Int?
+  payment         Payment?          @relation("EnrollmentPayment")
+}
+
+model Course {
+  id          Int               @id @default(autoincrement())
+  title       String
+  description String            @db.Text
+  price       Int
+  picture_url String
+  difficulty  Course_Difficulty @default(BEGINNER)
+  createAt    DateTime          @default(now())
+  updateAt    DateTime          @updatedAt @db.Timestamp(0)
+  isPublished Boolean           @default(false)
+  lessons    Lesson[]
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String   @db.Text
+  courses      Course[]
+}
+
+model Lesson {
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String   @db.Text
+  video_url       String
+  order_in_course Int
+  createAt        DateTime @default(now())
+  updateAt        DateTime @updatedAt @db.Timestamp(0)
+  Course          Course?  @relation(fields: [courseId], references: [id])
+  courseId        Int
+}
