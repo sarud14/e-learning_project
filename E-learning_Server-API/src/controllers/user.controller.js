@@ -1,16 +1,16 @@
 import userService from "../services/users.service.js";
 import createError from "../utils/create-error.util.js";
 
-export const getAllUsers = async (req, res, next) => {
+export const getUserById = async (req, res, next) => {
   try {
     if (!req.user) {
       createError(401, "Unauthorized");
     }
-    const users = await userService.getAllUser();
+    const users = await userService.getUserById("id", req.user.id);
     console.log(users);
-    res.json({ message: "All list user", result: users });
+    res.json({ message: "User Info", result: users });
   } catch (error) {
-    console.log("getAllUser err", error);
+    console.log("getUserById err", error);
     next(error);
   }
 };
