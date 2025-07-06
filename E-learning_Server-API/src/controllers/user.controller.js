@@ -1,7 +1,6 @@
 import userService from "../services/users.service.js";
 import createError from "../utils/create-error.util.js";
 
-
 export const getUserById = async (req, res, next) => {
   try {
     if (!req.user) {
