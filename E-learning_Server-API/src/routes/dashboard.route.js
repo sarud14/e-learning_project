@@ -7,8 +7,8 @@ import checkRole from "../middlewares/check-auth-role.middleware.js";
 
 const dashboardRoute = express.Router();
 
-dashboardRoute.get("/student", authorization, checkRole(["USER"]),getStudentById);
-dashboardRoute.get("/instructor", authorization, getInstructorById);
-dashboardRoute.get("/admin", authorization, getAdminById);
+dashboardRoute.get("/student", authorization, checkRole("USER","ADMIN"),getStudentById);
+dashboardRoute.get("/instructor", authorization, checkRole("USER_INSTRUCTOR", "ADMIN"),getInstructorById);
+dashboardRoute.get("/admin", authorization, checkRole("ADMIN"),getAdminById);
 
 export default dashboardRoute;
