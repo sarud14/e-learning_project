@@ -5,6 +5,7 @@ import error from "./middlewares/error.middleware.js";
 import userRoute from "./routes/users.route.js";
 import dashboardRoute from "./routes/dashboard.route.js"
 import enrollmentRoute from "./routes/enrollment.route.js";
+import instructorRoute from "./routes/instructor.route.js";
 
 
 const app = express();
@@ -14,10 +15,8 @@ app.use("/api/authenticate",authenticateRoute);
 app.use("/api/users", userRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/enrollments", enrollmentRoute);
+app.use("/api/instructor", instructorRoute);
 
-app.use("/api/instructor", (req, res, next) => {
-  res.json({ message: "instructor" });
-});
 app.use("/api/admin", (req, res, next) => {
   res.json({ message: "admin" });
 });

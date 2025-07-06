@@ -15,3 +15,17 @@ export const getInstructorById = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getInstructorCourses = async (req,res,next) => {
+  try {
+    const instructorId = req.user.id
+    if(!instructorId) {
+      createError(401, "Unauthorized");
+    }
+    const courses = await instructorService.getInstructorCourses(instructorId)
+    res.json({ message: "Instructor's courses detail", result: courses });
+  } catch (error) {
+    console.log("getInstructorCourses err". error)
+    next(error)
+  }
+}
