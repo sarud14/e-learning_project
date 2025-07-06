@@ -13,15 +13,15 @@ app.use("/api/authenticate",authenticateRoute);
 app.use("/api/users", userRoute);
 app.use("/api/dashboard", dashboardRoute);
 
+app.use("/api/enrollments", (req, res, next) => {
+  res.json({ message: "enrollments" });
+});
 
 // app.use("/api/instructor", (req, res, next) => {
 //   res.json({ message: "instructor" });
 // });
 // app.use("/api/admin", (req, res, next) => {
 //   res.json({ message: "admin" });
-// });
-// app.use("/api/enrollments", (req, res, next) => {
-//   res.json({ message: "enrollments" });
 // });
 // app.use("/api/courses", (req, res, next) => {
 //   res.json({ message: "courses" });

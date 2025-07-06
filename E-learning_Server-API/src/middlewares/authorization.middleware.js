@@ -16,7 +16,7 @@ export default async function (req, res, next) {
     }
 
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    const foundUserById = await userService.getAllUser("id", payload.id);
+    const foundUserById = await userService.getUserById("id", payload.id);
     if (!foundUserById) {
       createError(401, "Unauthorized");
     }
