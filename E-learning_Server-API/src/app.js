@@ -7,6 +7,7 @@ import dashboardRoute from "./routes/dashboard.route.js"
 import enrollmentRoute from "./routes/enrollment.route.js";
 import instructorRoute from "./routes/instructor.route.js";
 import adminRoute from "./routes/admin.route.js";
+import courseRoute from "./routes/courses.route.js";
 
 
 const app = express();
@@ -18,10 +19,8 @@ app.use("/api/dashboard", dashboardRoute);
 app.use("/api/enrollments", enrollmentRoute);
 app.use("/api/instructor", instructorRoute);
 app.use("/api/admin", adminRoute);
+app.use("/api", courseRoute);
 
-app.use("/api/courses", (req, res, next) => {
-  res.json({ message: "courses" });
-});
 app.use("/api/lessons", (req, res, next) => {
   res.json({ message: "lessons" });
 });
