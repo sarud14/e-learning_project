@@ -42,7 +42,6 @@ export const registerInstructor = async (req, res, next) => {
 }
 
 export const getAllUsers = async (req, res, next) => {
-   console.log("--- getAllUsers Controller hit! ---")
   try {
     const users = await userService.getAllUsers();
 
