@@ -36,6 +36,6 @@ app.use("/api/payment", (req, res, next) => {
   res.json({ message: "payment" });
 });
 
-app.use(error)
 app.use(notFound);
+app.use(error)
 export default app;

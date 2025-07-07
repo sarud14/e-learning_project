@@ -2,14 +2,14 @@ import prisma from "../config/prisma.config.js";
 
 const enrollmentService = {}
 
-enrollmentService.studentGetEnroll = async () => {
-  return await prisma.enrollment.findMany({
+enrollmentService.studentGetEnroll = async (accountId) => {
+  const enrollments = await prisma.enrollment.findMany({
     where: {
       accountId: accountId,
       status: "ACTIVE"
     },
     include: {
-      course: true
+      Course: true
     },
     orderBy: {
       enrollment_date: "desc"
