@@ -6,6 +6,7 @@ import userRoute from "./routes/users.route.js";
 import dashboardRoute from "./routes/dashboard.route.js"
 import enrollmentRoute from "./routes/enrollment.route.js";
 import instructorRoute from "./routes/instructor.route.js";
+import adminRoute from "./routes/admin.route.js";
 
 
 const app = express();
@@ -16,10 +17,8 @@ app.use("/api/users", userRoute);
 app.use("/api/dashboard", dashboardRoute);
 app.use("/api/enrollments", enrollmentRoute);
 app.use("/api/instructor", instructorRoute);
+app.use("/api/admin", adminRoute);
 
-app.use("/api/admin", (req, res, next) => {
-  res.json({ message: "admin" });
-});
 app.use("/api/courses", (req, res, next) => {
   res.json({ message: "courses" });
 });
@@ -36,6 +35,9 @@ app.use("/api/payment", (req, res, next) => {
   res.json({ message: "payment" });
 });
 
+
+
 app.use(notFound);
 app.use(error)
+
 export default app;
