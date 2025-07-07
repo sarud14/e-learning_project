@@ -14,7 +14,18 @@ coursesService.checkInstructorCourseOwnership = async (courseId, instructorId) =
   }
 }
 
-
+coursesService.getAllCourses = async () => {
+  const courses = await prisma.course.findMany({
+    select: {
+      id: true,
+      title: true,
+      description: true,
+      price: true,
+      Instructor: { select: { first_name: true, last_name: true } },
+    },
+  });
+  return courses;
+};
 
 
 
