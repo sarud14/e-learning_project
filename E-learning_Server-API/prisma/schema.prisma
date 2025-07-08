@@ -124,6 +124,7 @@ model Lesson {
   order_in_course Int
   createAt        DateTime @default(now())
   updateAt        DateTime @updatedAt @db.Timestamp(0)
+  isPublished     Boolean  @default(false)
   Course          Course?  @relation(fields: [courseId], references: [id])
   courseId        Int
 }

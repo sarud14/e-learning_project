@@ -8,6 +8,7 @@ import enrollmentRoute from "./routes/enrollment.route.js";
 import instructorRoute from "./routes/instructor.route.js";
 import adminRoute from "./routes/admin.route.js";
 import courseRoute from "./routes/courses.route.js";
+import lessonRoute from "./routes/lessons.route.js";
 
 
 const app = express();
@@ -20,10 +21,8 @@ app.use("/api/enrollments", enrollmentRoute);
 app.use("/api/instructor", instructorRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api", courseRoute);
+app.use("/api", lessonRoute);
 
-app.use("/api/lessons", (req, res, next) => {
-  res.json({ message: "lessons" });
-});
 app.use("/api/all-categories", (req, res, next) => {
   res.json({ message: "all categories" });
 });
