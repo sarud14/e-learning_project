@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "luxury";
+  default: true;
+  --color-base-100: #040404;
+  --color-base-200: #232323;
+  --color-base-300: #353535;
+  --color-primary: #7A564E;
+  --color-secondary: #937E65;
+  --color-accent: #A25764;
+  --color-neutral: #E09F18;
+  --color-info: #FAEDD2;
+}
