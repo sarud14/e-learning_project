@@ -98,14 +98,15 @@ lessonService.createLesson = async (data) => {
     description,
     video_url,
     order_in_course,
-    isPublished, } = data;
+    isPublished,
+  } = data;
 
   const existingCourse = await prisma.course.findUnique({
     where: { id: +courseId },
   });
 
   if (!existingCourse) {
-    throw createError(404, "Course not found.");
+    createError(404, "Course not found.");
   }
 
   const newLesson = await prisma.lesson.create({
@@ -125,5 +126,60 @@ lessonService.createLesson = async (data) => {
 
   return newLesson;
 };
+
+lessonService.updateLesson = async (lessonId, updateData) => {
+  const existingLesson = await prisma.lesson.findUnique({
+    where: { id: +lessonId },
+  });
+  if (!existingLesson) {
+    createError(404, "Lesson not found");
+  }
+  const dataToUpdate = {
+    title: updateData.title,
+    description: updateData.description,
+    video_url: updateData.video_url,
+    order_in_course:
+      updateData.order_in_course !== undefined
+        ? +updateData.order_in_course
+        : undefined,
+    isPublished:
+      updateData.isPublished !== undefined
+        ? Boolean(updateData.isPublished)
+        : undefined,
+  };
+  Object.keys(dataToUpdate).forEach((key) => {
+    if (dataToUpdate[key] === undefined) {
+      delete dataToUpdate[key];
+    }
+  });
+  if (Object.keys(dataToUpdate).length === 0) {
+    return existingLesson; 
+  }
+  const updatedLesson = await prisma.lesson.update({
+    where: {
+      id: +lessonId,
+    },
+    data: dataToUpdate,
+  });
+
+  return updatedLesson;
+};
+
+lessonService.deleteLesson = async (lessonId) => {
+  const existingLesson = await prisma.lesson.findUnique({
+    where: { id: +lessonId },
+  });
+
+  if (!existingLesson) {
+    createError(404, "Lesson not found.");
+  }
+  const deletedLesson = await prisma.lesson.delete({
+    where: { id: +lessonId },
+  });
+
+  return deletedLesson;
+};
+
+
 
 export default lessonService;

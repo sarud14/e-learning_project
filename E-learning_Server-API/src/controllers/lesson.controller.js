@@ -23,3 +23,33 @@ export const createLesson = async (req, res, next) => {
     next(error);
   }
 };
+
+export const updateLesson = async (req, res, next) => {
+    try {
+        const { id: lessonId } = req.params; 
+        const updateData = req.body;       
+        const updatedLesson = await lessonService.updateLesson(lessonId, updateData);
+
+        res.json({
+            message: `Lesson ID: ${lessonId} updated successful.`,
+            result: updatedLesson,
+        });
+    } catch (error) {
+        console.error("updateLesson err", error);
+        next(error);
+    }
+};
+
+export const deleteLesson = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const deleteLesson = await lessonService.deleteLesson(id);
+    res.json({
+      message: `Lesson ID: ${id} deleted successful`,
+      result: deleteLesson,
+    });
+  } catch (error) {
+    console.log('deleteLesson err', error)
+    next(error)
+  }
+};
