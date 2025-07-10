@@ -1,12 +1,13 @@
 import Footer from "../components/Footer.jsx";
+import LandingIntroduceTeam from "../components/LandingPageComponents/LandingIntroduceTeam.jsx";
 import LandingPageCoursesItem from "../components/LandingPageComponents/LandingPageCoursesItem.jsx";
 import LandingPageVideo from "../components/LandingPageComponents/LandingPageVideo.jsx";
 
 function LandingPages() {
   return (
-    <>
+    <div>
       <LandingPageVideo />
-      <div className="w-540 mx-auto mt-36">
+      <div className="w-360 mx-auto mt-36">
         <h1 className="text-info text-4xl">Our Courses</h1>
         <div>
           <div className="flex h-full justify-center items-end">
@@ -28,8 +29,9 @@ function LandingPages() {
         </div>
       </div>
       <LandingPageCoursesItem />
+      <LandingIntroduceTeam />
       <Footer />
-    </>
+    </div>
   );
 }
 export default LandingPages;
