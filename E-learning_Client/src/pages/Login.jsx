@@ -5,8 +5,7 @@ function Login() {
   return (
     <div className="h-screen">
       <HeaderNavbar />
-      <div className="pt-18 h-fit flex justify-evenly">
-        <div></div>
+      <div className="pt-18 h-fit flex justify-center items-center">
         <div className="bg-info rounded-box border p-10 text-primary mt-14 w-lg h-150">
           <p className="text-4xl text-center font-bold mt-6">Login</p>
           <p className="text-lg text-center mt-4">
