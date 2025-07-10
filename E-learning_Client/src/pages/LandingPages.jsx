@@ -1,9 +1,11 @@
+import Footer from "../components/Footer.jsx";
+import LandingPageCoursesItem from "../components/LandingPageComponents/LandingPageCoursesItem.jsx";
+import LandingPageVideo from "../components/LandingPageComponents/LandingPageVideo.jsx";
+
 function LandingPages() {
   return (
     <>
-      <div className="w-540 h-200 border-10 border-accent rounded-xl mx-auto mt-30 flex justify-center items-center">
-        <h1 className="text-5xl">Video</h1>
-      </div>
+      <LandingPageVideo />
       <div className="w-540 mx-auto mt-36">
         <h1 className="text-info text-4xl">Our Courses</h1>
         <div>
@@ -25,52 +27,8 @@ function LandingPages() {
           </div>
         </div>
       </div>
-      <div className="flex justify-evenly gap-4 w-540 mx-auto mt-20">
-        <div className="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-            />
-          </figure>
-          <div className="card-body bg-info">
-            <h2 className="card-title">
-              Card Title
-              <div className="badge badge-secondary">NEW</div>
-            </h2>
-            <p>
-              A card component has a figure, a body part, and inside body there
-              are title and actions parts
-            </p>
-            <div className="card-actions justify-end">
-              <div className="badge badge-outline">Fashion</div>
-              <div className="badge badge-outline">Products</div>
-            </div>
-          </div>
-        </div>
-        <div className="card bg-base-100 w-96 shadow-sm">
-          <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-            />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Card Title
-              <div className="badge badge-secondary">NEW</div>
-            </h2>
-            <p>
-              A card component has a figure, a body part, and inside body there
-              are title and actions parts
-            </p>
-            <div className="card-actions justify-end">
-              <div className="badge badge-outline">Fashion</div>
-              <div className="badge badge-outline">Products</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <LandingPageCoursesItem />
+      <Footer />
     </>
   );
 }
