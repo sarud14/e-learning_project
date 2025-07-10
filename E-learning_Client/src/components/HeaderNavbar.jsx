@@ -1,4 +1,6 @@
 import { SearchIcon } from "../icons";
+import { Link } from "react-router";
+
 
 function HeaderNavbar() {
   return (
@@ -34,8 +36,8 @@ function HeaderNavbar() {
           <input type="text" placeholder="Search" className="flex-1" />
         </label>
       </div>
-      <button className="btn btn-primary text-info w-40 text-lg">Login</button>
-      <button className="btn text-info w-40 text-lg">Sign Up</button>
+      <Link to="/login" className="btn btn-primary text-info w-40 text-lg">Login</Link>
+      <Link to="/register" className="btn text-info w-40 text-lg">Sign Up</Link>
     </div>
   );
 }

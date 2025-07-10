@@ -1,3 +1,5 @@
+import { FacebookIcon, IgIcon, LinkedinIcon, YoutubeIcon} from "../icons";
+
 function Footer() {
   return (
     <div className="bg-info w-full h-96 mt-10 flex justify-center items-center">
@@ -79,19 +81,20 @@ function Footer() {
           <div>
             <ul className="flex flex-col gap-2">
               <li className="text-primary font-bold">FOLLOW US</li>
-              <li>
+              <li className="flex gap-2 items-center">
+                <FacebookIcon className="w-7"/>
                 <a href="/">Facebook</a>
               </li>
-              <li>
+              <li className="flex gap-2 items-center">
+                <IgIcon className="w-7" />
                 <a href="/">instagram</a>
               </li>
-              <li>
-                <a href="/">X</a>
-              </li>
-              <li>
+              <li className="flex gap-2 items-center">
+                <LinkedinIcon  className="w-7"/>
                 <a href="/">LinkedIn</a>
               </li>
-              <li>
+              <li className="flex gap-2 items-center">
+                <YoutubeIcon className="w-7"/>
                 <a href="/">Youtube</a>
               </li>
             </ul>
