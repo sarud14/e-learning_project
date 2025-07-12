@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 function HeaderNavbar() {
   return (
-    <div className="flex gap-4 justify-between items-center px-4 py-4 h-14 w-580 left-1/2 -translate-x-1/2 rounded-md bg-info fixed top-4 shadow-[0_6px_10px_-2px_rgba(196,196,196,0.4)_!important] z-10">
+    <div className="flex gap-4 justify-between items-center px-4 py-4 h-14 w-580 left-1/2 -translate-x-1/2 rounded-md bg-info fixed top-4 shadow-[0_6px_10px_-2px_rgba(196,196,196,0.4)_!important] z-999">
       <div className="text-primary w-[150px] h-9">
          <a href="/" className="h-full w-full flex items-center justify-center">
         <img src="/assets/images/Logo.png" alt="web-logo" className="h-full w-auto object-contain" />

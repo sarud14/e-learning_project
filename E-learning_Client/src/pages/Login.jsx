@@ -1,17 +1,48 @@
 import Footer from "../components/Footer";
 import HeaderNavbar from "../components/HeaderNavbar";
-import useLoginForm from "../hooks/useLoginForm";
+import useUserStore from "../stores/userStore";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../validators/validators";
+
 
 function Login() {
-  const { handleSubmit, register, isSubmitting, errors, onSubmit } =
-    useLoginForm();
+const { handleSubmit, register, formState, reset } = useForm({
+    resolver: yupResolver(loginSchema),
+    mode: "onBlur",
+  });
+  const { isSubmitting, errors } = formState;
+  const login = useUserStore((state) => state.login)
+  const token = useUserStore((state)=> state.token)
+  console.log(token)
+  const onSubmit = async (data) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const resp = await login(data);
+
+      console.log(resp);
+
+      alert(resp.data.message);
+
+      // if (resp.data.token) {
+      //   localStorage.setItem('token', resp.data.token);
+      // }
+
+      reset();
+      // navigate('/');
+    } catch (err) {
+      const errMsg = err.message || "An error occurred during login.";
+      alert(`Error: ${errMsg}`);
+      console.error(err);
+    }
+  };
 
   return (
     <div className="h-screen">
       <HeaderNavbar />
       <div className="pt-18 h-fit flex justify-center items-center">
-        <div className="bg-info rounded-box border p-10 text-primary mt-14 w-lg h-150">
-          <p className="text-4xl text-center font-bold mt-6">Login</p>
+        <div className="bg-info rounded-box border p-10 text-primary mt-10 w-lg">
+          <p className="text-4xl text-center font-bold mt-4">Login</p>
           <p className="text-lg text-center mt-4">
             Welcome back! Please log in to access your account.
           </p>

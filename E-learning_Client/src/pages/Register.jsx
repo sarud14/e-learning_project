@@ -1,12 +1,34 @@
 import Footer from "../components/Footer";
 import HeaderNavbar from "../components/HeaderNavbar";
-import useRegisterForm from "../hooks/useRegisterForm";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { authenticateApt } from "../services/authenticateService";
+import { registerSchema } from "../validators/validators";
 
-function Register() {
-  const { handleSubmit, register, isSubmitting, errors, onSubmit } =
-    useRegisterForm();
+function  Register() {
+  const { handleSubmit, register, formState, reset } = useForm({
+    resolver: yupResolver(registerSchema),
+    mode: "onBlur",
+  });
+  const { isSubmitting, errors } = formState;
+  
+  const onSubmit = async (data) => {
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const resp = await authenticateApt.post("/register", data);
 
-    
+      console.log(resp);
+
+      alert(resp.data.message);
+
+      reset();
+    } catch (err) {
+      const errMsg = err.message || "An error occurred during registration.";
+      alert(`Error: ${errMsg}`);
+      console.error(err);
+    }
+  };
+
   return (
     <div className="h-screen">
       <HeaderNavbar />
