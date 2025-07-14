@@ -11,6 +11,7 @@ import instructorRoute from "./routes/instructor.route.js";
 import adminRoute from "./routes/admin.route.js";
 import courseRoute from "./routes/courses.route.js";
 import lessonRoute from "./routes/lessons.route.js";
+import categoryRoute from "./routes/all-categories.route.js";
 
 const app = express();
 app.use(express.json());
@@ -31,10 +32,8 @@ app.use("/api/instructor", instructorRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api", courseRoute);
 app.use("/api", lessonRoute);
+app.use("/api/all-categories", categoryRoute);
 
-app.use("/api/all-categories", (req, res, next) => {
-  res.json({ message: "all categories" });
-});
 app.use("/api/new-categories", (req, res, next) => {
   res.json({ message: "new categories" });
 });
