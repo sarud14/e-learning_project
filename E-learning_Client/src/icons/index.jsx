@@ -1,20 +1,23 @@
 export function SearchIcon(props) {
   return (
-    <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"   {...props}>
+    <svg
+      className="h-[1em] opacity-50"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      {...props}
+    >
       <g
         strokeLinejoin="round"
         strokeLinecap="round"
         strokeWidth="2.5"
         fill="none"
         stroke="currentColor"
-
       >
         <circle cx="11" cy="11" r="8"></circle>
         <path d="m21 21-4.3-4.3"></path>
       </g>
     </svg>
-  )
-
+  );
 }
 
 export function FacebookIcon(props) {
@@ -22,7 +25,7 @@ export function FacebookIcon(props) {
     <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path d="M30.996 16.091C30.995 7.81 24.282 1.097 16 1.097S1.004 7.811 1.004 16.093c0 7.455 5.44 13.639 12.566 14.8l.086.012V20.427H9.848v-4.336h3.808v-3.302a5.293 5.293 0 015.684-5.834l-.018-.001c1.199.017 2.359.123 3.491.312l-.134-.019v3.69h-1.892a2.168 2.168 0 00-2.444 2.351l-.001-.009v2.812h4.159l-.665 4.336h-3.494v10.478c7.213-1.174 12.653-7.359 12.654-14.814z" />
     </svg>
-  )
+  );
 }
 
 export function IgIcon(props) {
@@ -40,7 +43,7 @@ export function IgIcon(props) {
         fill="#000"
       />
     </svg>
-  )
+  );
 }
 
 export function LinkedinIcon(props) {
@@ -56,7 +59,7 @@ export function LinkedinIcon(props) {
         fill="#000"
       />
     </svg>
-  )
+  );
 }
 
 export function YoutubeIcon(props) {
@@ -71,5 +74,23 @@ export function YoutubeIcon(props) {
         fillRule="evenodd"
       />
     </svg>
-  )
+  );
+}
+
+export function DropdownArrow(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12.707 14.707a1 1 0 01-1.414 0l-5-5a1 1 0 011.414-1.414L12 12.586l4.293-4.293a1 1 0 111.414 1.414l-5 5z"
+        fill="currentColor"
+      />
+    </svg>
+  );
 }

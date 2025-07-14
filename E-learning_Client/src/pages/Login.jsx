@@ -4,17 +4,19 @@ import useUserStore from "../stores/userStore";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../validators/validators";
+import { useNavigate } from "react-router";
 
 
 function Login() {
-const { handleSubmit, register, formState, reset } = useForm({
+  const navi = useNavigate()
+  const { handleSubmit, register, formState, reset } = useForm({
     resolver: yupResolver(loginSchema),
     mode: "onBlur",
   });
   const { isSubmitting, errors } = formState;
-  const login = useUserStore((state) => state.login)
-  const token = useUserStore((state)=> state.token)
-  console.log(token)
+  const login = useUserStore((state) => state.login);
+  const token = useUserStore((state) => state.token);
+  console.log(token);
   const onSubmit = async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -24,12 +26,8 @@ const { handleSubmit, register, formState, reset } = useForm({
 
       alert(resp.data.message);
 
-      // if (resp.data.token) {
-      //   localStorage.setItem('token', resp.data.token);
-      // }
-
       reset();
-      // navigate('/');
+      navi("/dashboard")
     } catch (err) {
       const errMsg = err.message || "An error occurred during login.";
       alert(`Error: ${errMsg}`);

@@ -1,38 +1,49 @@
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router";
+// src/AppRouter.jsx
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  Navigate,
+} from "react-router"; // <<-- ต้อง import Navigate และ Outlet
 import MainLayout from "../layouts/MainLayout";
 import LandingPages from "../pages/LandingPages";
 import Login from "../pages/Login";
-import Register from "../pages/Register"
+import Register from "../pages/Register";
+import UserDashboard from "../pages/UserDashboard";
+import useUserStore from "../stores/userStore";
 
-const user = null
+function ProtectedRoute() {
+  const user = useUserStore((state) => state.user);
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+  return <Outlet />;
+}
 
-const publicRouter = createBrowserRouter([
-  {path: "/login", element: <Login />},
-  {path: "/register", element: <Register />},
-  {path: "/", element: <MainLayout />,
-    children: [
-      { index: true, element: <LandingPages /> }
-    ]
-  },
-  { path: "*", element: <Navigate to="/" replace /> }
-]);
-
-
-const userRouter = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     children: [
-      { index: true, element: <LandingPages /> }
+      { index: true, element: <LandingPages /> },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
     ],
   },
+
+  {
+    element: <ProtectedRoute />,
+    children: [{ path: "/dashboard", element: <UserDashboard /> }],
+  },
+
+  { path: "*", element: <Navigate to="/" replace /> },
 ]);
+
 function AppRouter() {
-  const finalRouter = user ? userRouter : publicRouter
+  
   return (
-    <div>
-      <RouterProvider router={finalRouter} />
-    </div>
+    <RouterProvider router={router} /> 
   );
 }
+
 export default AppRouter;
