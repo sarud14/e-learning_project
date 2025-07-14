@@ -27,7 +27,7 @@ function HeaderNavbar() {
   console.log(user)
 
   return (
-    <div className="flex gap-4 justify-between items-center px-4 py-4 h-14 max-w-screen w-580 left-1/2 -translate-x-1/2 rounded-md bg-info fixed top-4 shadow-[0_6px_10px_-2px_rgba(196,196,196,0.4)_!important] z-999">
+    <div className="flex gap-4 justify-between items-center px-4 py-4 h-14 max-w-screen w-540 left-1/2 -translate-x-1/2 rounded-md bg-info fixed top-4 shadow-[0_6px_10px_-2px_rgba(196,196,196,0.4)_!important] z-999">
       <div className="text-primary w-[150px] h-9">
         <a href="/" className="h-full w-full flex items-center justify-center">
           <img
