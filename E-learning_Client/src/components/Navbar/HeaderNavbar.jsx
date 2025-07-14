@@ -1,7 +1,8 @@
-import { DropdownArrow, SearchIcon } from "../icons";
+import { DropdownArrow, SearchIcon } from "../../icons";
 import { Link } from "react-router";
-import useUserStore from "../stores/userStore";
+import useUserStore from "../../stores/userStore";
 import { useNavigate } from "react-router";
+import CategoryCourses from "./CategoryCourses";
 
 function HeaderNavbar() {
   const user = useUserStore((state) => state.user);
@@ -37,26 +38,7 @@ function HeaderNavbar() {
         </a>
       </div>
       <div className="flex flex-1 gap-4">
-        <div className="dropdown dropdown-start">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-primary rounded-field text-info hover:bg-accent w-40 text-lg"
-          >
-            Courses
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu dropdown-content bg-primary rounded-box z-1 mt-4 w-52 p-2 shadow-sm"
-          >
-            <li>
-              <a className="text-info hover:bg-accent">Item 1</a>
-            </li>
-            <li>
-              <a className="text-info hover:bg-accent">Item 2</a>
-            </li>
-          </ul>
-        </div>
+        <CategoryCourses />
         <label className="input rounded-full bg-primary text-info flex items-center">
           <SearchIcon className="w-5 opacity-60 text-info" />
           <input type="text" placeholder="Search" className="flex-1" />

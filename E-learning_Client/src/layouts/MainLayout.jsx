@@ -1,5 +1,5 @@
 import { Outlet } from "react-router";
-import HeaderNavbar from "../components/HeaderNavbar.jsx";
+import HeaderNavbar from "../components/Navbar/HeaderNavbar";
 function MainLayout() {
   return (
     <div className="min-h-screen">

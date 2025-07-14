@@ -1,4 +1,4 @@
-import HeaderNavbar from "../components/HeaderNavbar";
+import HeaderNavbar from "../components/Navbar/HeaderNavbar";
 import BoardInfoComponent from "../components/UserDashboardComponents/BoardInfoComponent";
 import SidebarComponent from "../components/UserDashboardComponents/SidebarComponent";
 

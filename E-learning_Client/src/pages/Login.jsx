@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import HeaderNavbar from "../components/HeaderNavbar";
+import HeaderNavbar from "../components/Navbar/HeaderNavbar";
 import useUserStore from "../stores/userStore";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
