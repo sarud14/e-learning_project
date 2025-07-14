@@ -2,6 +2,7 @@ import Footer from "../components/Footer.jsx";
 import LandingIntroduceTeam from "../components/LandingPageComponents/LandingIntroduceTeam.jsx";
 import LandingPageCoursesItem from "../components/LandingPageComponents/LandingPageCoursesItem.jsx";
 import LandingPageVideo from "../components/LandingPageComponents/LandingPageVideo.jsx";
+import { Link } from "react-router";
 
 function LandingPages() {
   return (
@@ -11,20 +12,14 @@ function LandingPages() {
         <h1 className="text-info text-4xl">Our Courses</h1>
         <div>
           <div className="flex h-full justify-center items-end">
-            <h1 className="text-info text-xl mt-6">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
-              natus iure minima culpa laborum! Reprehenderit perspiciatis, omnis
-              harum quo, aspernatur rem atque eum totam officiis incidunt
-              dignissimos. Ullam, quisquam quaerat? Lorem ipsum dolor sit amet,
-              consectetur adipisicing elit. Dicta similique sed mollitia error
-              quibusdam beatae delectus! Velit ab nam hic sit dolores doloremque
-              quaerat, consequatur qui rem quibusdam, vel sapiente. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Cupiditate minus ad
-              doloribus quis consectetur fuga, harum, nisi maiores velit nemo
-              asperiores, error quisquam. Quae culpa repellat, consectetur rerum
-              mollitia quo.
+            <h1 className="text-info text-2xl mt-6">
+              Ready to dive into the world of development? Whether you're just
+              starting out or already writing code, our video courses are here
+              to help you grow. Learn how to build websites, create apps,
+              explore DevOps, and much more — all through clear,
+              beginner-friendly videos you can watch anytime, anywhere.
             </h1>
-            <button className="btn btn-primary text-info">View All</button>
+            <Link to="/course" className="btn btn-primary text-info">View All</Link>
           </div>
         </div>
       </div>

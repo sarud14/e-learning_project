@@ -37,7 +37,7 @@ function Login() {
 
   return (
     <div className="h-screen">
-      <HeaderNavbar />
+     
       <div className="pt-18 h-fit flex justify-center items-center">
         <div className="bg-info rounded-box border p-10 text-primary mt-10 w-lg">
           <p className="text-4xl text-center font-bold mt-4">Login</p>
@@ -98,7 +98,7 @@ function Login() {
           </p>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 w-full">
+      <div className="w-full">
         <Footer />
       </div>
     </div>

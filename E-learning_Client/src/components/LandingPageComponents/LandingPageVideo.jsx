@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { lessonApi } from "../../services/lessonService";
 
 const getYoutubeEmbedUrl = (youtubeWatchUrl) => {
   if (!youtubeWatchUrl) return "";
@@ -14,14 +14,6 @@ const getYoutubeEmbedUrl = (youtubeWatchUrl) => {
       videoId = idPart.split("&")[0];
     }
   }
-  // Case 2: Shortened URL (e.g., https://youtu.be/VIDEO_ID)
-  else if (youtubeWatchUrl.includes("youtu.be/")) {
-    const parts = youtubeWatchUrl.split("youtu.be/");
-    if (parts.length > 1) {
-      const idPart = parts[1];
-      videoId = idPart.split("?")[0];
-    }
-  }
 
   if (videoId) {
     return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
@@ -30,19 +22,49 @@ const getYoutubeEmbedUrl = (youtubeWatchUrl) => {
 };
 
 function LandingPageVideo() {
+  const [videoData, setVideoData] = useState(null);
+
+  useEffect(() => {
+    const getVideo = async () => {
+      try {
+        const resp = await lessonApi.get("/courses/1/lessons");
+
+        if (
+          resp.data &&
+          Array.isArray(resp.data.result) &&
+          resp.data.result.length > 0
+        ) {
+          setVideoData(resp.data.result[0]);
+        } 
+       
+      } catch (err) {
+        console.error("Failed to fetch landing page video:", err); 
+      }
+    };
+
+    getVideo();
+  }, []);
+
+  const embedUrl = videoData ? getYoutubeEmbedUrl(videoData.video_url) : "";
+  if (!embedUrl) {
+    return (
+      <div className="w-360 h-200 border-10 border-accent rounded-xl mx-auto mt-30 flex justify-center items-center">
+        <h1 className="text-3xl text-warning">No valid URL found.</h1>
+      </div>
+    );
+  }
   return (
     <div className="w-360 h-200 border-10 border-accent rounded-xl mx-auto mt-30 flex justify-center items-center">
-      {/* <iframe
+      <iframe
         width="100%"
         height="100%"
         src={embedUrl}
         title={videoData?.title || "YouTube video player"}
-        frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
         className="rounded-xl"
-      ></iframe> */}
+      ></iframe>
     </div>
   );
 }

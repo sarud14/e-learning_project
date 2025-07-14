@@ -5,13 +5,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { authenticateApt } from "../services/authenticateService";
 import { registerSchema } from "../validators/validators";
 
-function  Register() {
+function Register() {
   const { handleSubmit, register, formState, reset } = useForm({
     resolver: yupResolver(registerSchema),
     mode: "onBlur",
   });
   const { isSubmitting, errors } = formState;
-  
+
   const onSubmit = async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -31,8 +31,6 @@ function  Register() {
 
   return (
     <div className="h-screen">
-      <HeaderNavbar />
-
       <div className="pt-12 h-fit flex justify-center items-center">
         <div className="bg-info rounded-box border p-10 text-primary mt-18 w-lg">
           <p className="text-4xl text-center font-bold">Sign Up</p>

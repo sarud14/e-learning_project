@@ -11,6 +11,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import UserDashboard from "../pages/UserDashboard";
 import useUserStore from "../stores/userStore";
+import Courses from "../pages/Courses";
 
 function ProtectedRoute() {
   const user = useUserStore((state) => state.user);
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { index: true, element: <LandingPages /> },
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
+      { path: "/course", element: <Courses /> },
     ],
   },
 
