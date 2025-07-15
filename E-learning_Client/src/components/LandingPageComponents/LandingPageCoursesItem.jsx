@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {courseApi} from "../../services/courseService";
+import { courseApi } from "../../services/courseService";
 
 function LandingPageCoursesItem() {
   const [courses, setCourses] = useState([]);
@@ -18,14 +18,14 @@ function LandingPageCoursesItem() {
   }, []);
   return (
     <>
-      <div className="flex justify-evenly gap-4 w-360 mx-auto mt-20">
+      <div className="flex gap-4 w-360 mx-auto mt-20">
         {courses.length > 0 ? (
           courses.map((course) => (
             <div
               key={course.id}
-              className="card bg-info w-260 shadow-sm h-180 flex items-center"
+              className="card bg-info w-200 shadow-sm h-full flex flex-col items-center"
             >
-              <figure>
+              <figure className="w-full h-100 rounded-t-xl overflow-hidden">
                 <img
                   src={
                     course.picture_url ||
@@ -41,18 +41,20 @@ function LandingPageCoursesItem() {
                     <h2 className="card-title text-4xl">{course.title}</h2>
                     <div className="card-actions justify-end items-center">
                       <div className="badge badge-outline text-md font-bold">
-                        ${course.price}
+                        {course.price} Baht
                       </div>
                       <div className="badge badge-outline text-md font-bold">
                         {course.difficulty}
                       </div>
                       <div className="badge badge-primary text-info text-md">
-                        {course.Instructor.first_name}
+                        BY {course.Instructor.first_name}
                       </div>
                     </div>
                   </div>
+                    <p className="mt-3.5 text-lg pl-4 line-clamp-2 hover:line-clamp-none">
+                      {course.description}
+                    </p>
 
-                  <p className="mt-3.5 text-lg pl-4">{course.description}</p>
                   <button className="btn btn-primary text-info w-160 mt-">
                     Get It Now
                   </button>
