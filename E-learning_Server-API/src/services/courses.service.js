@@ -35,7 +35,19 @@ coursesService.getAllCourses = async (options = {}) => {
       createAt: true,
       updateAt: true,
       isPublished: true,
-      Instructor: { select: { first_name: true, last_name: true } },
+      Instructor: {
+        select: {
+          first_name: true,
+          last_name: true,
+          instructorDetail: {
+            select: {
+              picture_url: true,
+              job: true,
+              description: true,
+            },
+          },
+        },
+      },
       Category: {
         select: {
           id: true,
@@ -90,8 +102,8 @@ coursesService.editStatusCourses = async (courseId, isPublished) => {
 coursesService.getCourseById = async (courseId) => {
   const course = await prisma.course.findUnique({
     where: {
-      id: +courseId, 
-      isPublished: true, 
+      id: +courseId,
+      isPublished: true,
     },
     select: {
       id: true,
@@ -121,7 +133,7 @@ coursesService.getCourseById = async (courseId) => {
           id: true,
           title: true,
           description: true,
-          video_url: true, 
+          video_url: true,
           order_in_course: true,
         },
         orderBy: {

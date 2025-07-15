@@ -40,19 +40,20 @@ enum Course_Difficulty {
 }
 
 model Account {
-  id             Int          @id @default(autoincrement())
-  email          String       @unique
-  password       String
-  first_name     String
-  last_name      String
-  role           UserRole     @default(USER)
-  createAt       DateTime     @default(now())
-  updateAt       DateTime     @updatedAt @db.Timestamp(0)
-  login_logs     Login_log[]
-  search_logs    Search_log[]
-  payments       Payment[]
-  enrollments    Enrollment[]
-  createdCourses Course[]
+  id               Int               @id @default(autoincrement())
+  email            String            @unique
+  password         String
+  first_name       String
+  last_name        String
+  role             UserRole          @default(USER)
+  createAt         DateTime          @default(now())
+  updateAt         DateTime          @updatedAt @db.Timestamp(0)
+  login_logs       Login_log[]
+  search_logs      Search_log[]
+  payments         Payment[]
+  enrollments      Enrollment[]
+  createdCourses   Course[]
+  InstructorDetail InstructorDetail?
 }
 
 model Login_log {
@@ -127,4 +128,13 @@ model Lesson {
   isPublished     Boolean  @default(false)
   Course          Course?  @relation(fields: [courseId], references: [id])
   courseId        Int
+}
+
+model InstructorDetail {
+  id          Int     @id @default(autoincrement())
+  picture_url String
+  job         String?
+  description String? @db.Text
+  accountId   Int     @unique
+  account     Account @relation(fields: [accountId], references: [id])
 }
